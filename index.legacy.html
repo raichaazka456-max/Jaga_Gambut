@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jaga Gambut: Mengapa Lahan Basah Bisa Terbakar?</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5eead4" stroke-width="2.2">
+          <path d="M12 2C7 8 5 11.5 5 15a7 7 0 0 0 14 0c0-3.5-2-7-7-13z"/>
+          <path d="M12 10v8M9 14l3-2 3 2"/>
+        </svg>
+        <span>Jaga Gambut</span>
+      </div>
+      <div class="nav-links">
+        <a href="#simulator">Simulator Gambut</a>
+        <a href="#dragdrop">Misi Drag &amp; Drop</a>
+        <a href="#perbandingan">Dampak Ekosistem</a>
+        <a href="#kuis">Kuis Aksi 3R</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="hero">
+      <div class="badge">Media Edukasi Ekosistem Lahan Basah &bull; Karhutla Gambut</div>
+      <h1>Mengapa Lahan Basah Justru Bisa Terbakar Hebat?</h1>
+      <p class="lead">
+        Lahan gambut adalah spons raksasa penyimpan air dan karbon. Namun ketika kanal drainase menguras airnya hingga melewati batas kritis <strong>-40 cm</strong>, tumpukan bahan organik di bawah tanah berubah menjadi bahan bakar kering yang menyala tersembunyi selama berminggu-minggu.
+      </p>
+      <div class="facts-grid">
+        <div class="fact-card">
+          <div class="fact-num teal">2x Lipat</div>
+          <h3>Penyimpan Karbon Raksasa</h3>
+          <p>Lahan gambut menyimpan karbon hingga dua kali lebih banyak dibanding seluruh biomassa hutan mineral di dunia.</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-num amber">-40 cm</div>
+          <h3>Batas Kritis Muka Air</h3>
+          <p>Sesuai regulasi pengelolaan gambut, penurunan Tinggi Muka Air (TMA) di bawah 40 cm membuat permukaan gambut kering dan mudah terbakar.</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-num orange">Smoldering</div>
+          <h3>Api Bawah Tanah</h3>
+          <p>Kebakaran gambut menjalar tanpa nyala api besar di permukaan, sulit dipadamkan, dan memicu kabut asap pekat penyebab ISPA.</p>
+        </div>
+      </div>
+    </header>
+
+    <section id="simulator" class="card-section">
+      <div class="section-header">
+        <h2>1. Simulator Penampang Lahan Gambut (Cross-Section)</h2>
+        <p>Pilih tahapan kronologi atau geser Tinggi Muka Air (TMA) secara manual, lalu uji coba <strong>Sulut Percikan Api</strong> untuk melihat reaksi tanah gambut.</p>
+      </div>
+
+      <div class="sim-grid">
+        <div class="svg-stage">
+          <svg id="peatSvg" viewBox="0 0 640 370" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop id="skyTop" offset="0%" stop-color="#0f2e2b"/>
+                <stop id="skyBot" offset="100%" stop-color="#1e4e48"/>
+              </linearGradient>
+              <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.72"/>
+                <stop offset="100%" stop-color="#0284c7" stop-opacity="0.88"/>
+              </linearGradient>
+            </defs>
+
+            <rect x="0" y="0" width="640" height="145" fill="url(#skyGrad)"/>
+
+            <g id="smokeGroup" style="display:none;">
+              <circle class="smoke-puff" cx="150" cy="115" r="24" fill="#94a3b8"/>
+              <circle class="smoke-puff" cx="255" cy="105" r="30" fill="#cbd5e1"/>
+              <circle class="smoke-puff" cx="355" cy="118" r="26" fill="#94a3b8"/>
+            </g>
+
+            <g id="treesGroup">
+              <rect x="92" y="88" width="10" height="57" fill="#5c4033"/>
+              <circle id="canopy1" cx="97" cy="76" r="28" fill="#10b981"/>
+              <rect x="215" y="78" width="12" height="67" fill="#5c4033"/>
+              <circle id="canopy2" cx="221" cy="64" r="34" fill="#059669"/>
+              <path id="grass1" d="M310 145 L304 118 M315 145 L315 112 M320 145 L327 119" stroke="#34d399" stroke-width="3.5" stroke-linecap="round"/>
+              <path id="grass2" d="M385 145 L379 120 M390 145 L390 114 M395 145 L402 121" stroke="#34d399" stroke-width="3.5" stroke-linecap="round"/>
+            </g>
+
+            <rect id="peatUpper" x="0" y="145" width="465" height="145" fill="#3e2723"/>
+            <rect x="0" y="290" width="640" height="80" fill="#261c1a"/>
+            <text x="16" y="348" fill="#a8a29e" font-size="12" font-weight="bold">Lapisan Tanah Mineral Dasar (Subsoil)</text>
+
+            <g id="soilCracks" stroke="#1c100d" stroke-width="2.5" fill="none" style="display:none;">
+              <path d="M65 145 L72 168 L62 188"/>
+              <path d="M175 145 L168 174 L180 198"/>
+              <path d="M295 145 L305 170 L292 195"/>
+              <path d="M405 145 L396 172 L408 192"/>
+            </g>
+
+            <rect id="peatWater" x="0" y="160" width="465" height="130" fill="url(#waterGrad)"/>
+            <line id="waterLine" x1="0" y1="160" x2="465" y2="160" stroke="#7dd3fc" stroke-width="2.5" stroke-dasharray="6 4"/>
+            <text id="tmaLabel" x="14" y="180" fill="#e0f2fe" font-size="12" font-weight="bold">Muka Air Tanah (TMA): -10 cm</text>
+
+            <rect x="465" y="145" width="175" height="145" fill="#182220"/>
+            <rect id="canalWater" x="465" y="165" width="175" height="125" fill="url(#waterGrad)"/>
+            <text x="480" y="162" fill="#99f6e4" font-size="12" font-weight="bold">Kanal Drainase</text>
+
+            <g id="canalDam" style="display:none;">
+              <rect x="472" y="150" width="18" height="140" rx="3" fill="#b45309" stroke="#fde68a" stroke-width="1.5"/>
+              <line x1="472" y1="175" x2="490" y2="175" stroke="#78350f" stroke-width="2"/>
+              <line x1="472" y1="205" x2="490" y2="205" stroke="#78350f" stroke-width="2"/>
+              <line x1="472" y1="235" x2="490" y2="235" stroke="#78350f" stroke-width="2"/>
+              <line x1="472" y1="265" x2="490" y2="265" stroke="#78350f" stroke-width="2"/>
+              <rect x="496" y="174" width="134" height="24" rx="6" fill="#065f46" stroke="#34d399"/>
+              <text x="563" y="190" text-anchor="middle" fill="#ecfdf5" font-size="11" font-weight="bold">SEKAT KANAL AKTIF</text>
+            </g>
+
+            <g id="fireGroup" style="display:none;">
+              <ellipse class="ember-glow" cx="145" cy="182" rx="36" ry="15" fill="#ea580c"/>
+              <ellipse class="ember-glow" cx="145" cy="182" rx="20" ry="8" fill="#fde047"/>
+              <ellipse class="ember-glow" cx="265" cy="195" rx="44" ry="17" fill="#dc2626"/>
+              <ellipse class="ember-glow" cx="265" cy="195" rx="24" ry="9" fill="#facc15"/>
+              <ellipse class="ember-glow" cx="370" cy="178" rx="30" ry="13" fill="#ea580c"/>
+              <text x="155" y="226" fill="#fed7aa" font-size="12" font-weight="bold">BARA API BAWAH TANAH (SMOLDERING)</text>
+            </g>
+
+            <g id="sparkSizzle" style="display:none;">
+              <rect x="68" y="95" width="330" height="36" rx="10" fill="#0f766e" stroke="#5eead4" stroke-width="1.5"/>
+              <text x="233" y="117" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">Percikan api mendesis padam! Gambut basah.</text>
+            </g>
+          </svg>
+
+          <div id="simStatusBanner" class="status-banner status-safe">
+            <span id="statusText">STATUS: AMAN &amp; BASAH (TMA -10 cm)</span>
+            <span id="riskBadge">Risiko Kebakaran: RENDAH</span>
+          </div>
+        </div>
+
+        <div class="sim-controls">
+          <div>
+            <div class="control-label">Pilih Kronologi Tahapan:</div>
+            <div class="stage-buttons">
+              <button class="btn-stage active" data-stage="1" onclick="setStage(1)">Tahap 1: Gambut Sehat</button>
+              <button class="btn-stage" data-stage="2" onclick="setStage(2)">Tahap 2: Kanal Dibuka</button>
+              <button class="btn-stage" data-stage="3" onclick="setStage(3)">Tahap 3: Api Bawah Tanah</button>
+              <button class="btn-stage" data-stage="4" onclick="setStage(4)">Tahap 4: Sekat Kanal (3R)</button>
+            </div>
+          </div>
+
+          <div class="slider-box">
+            <div class="slider-header">
+              <span>Tinggi Muka Air (TMA):</span>
+              <span id="sliderValText" style="color:var(--teal-light);">-10 cm</span>
+            </div>
+            <input type="range" id="tmaSlider" min="0" max="90" value="10" oninput="onSliderChange(this.value)" />
+            <div class="slider-ticks">
+              <span>0 cm (Basah)</span>
+              <span style="color:#fbbf24;">-40 cm (Batas Kritis)</span>
+              <span style="color:#f87171;">-90 cm (Kering)</span>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn-spark" onclick="igniteSpark()">Sulut Percikan Api</button>
+            <button class="btn-dam" id="btnToggleDam" onclick="toggleDam()">Pasang Sekat Kanal</button>
+          </div>
+
+          <div class="sim-narration" id="simNarration">
+            <strong>Kondisi Alami:</strong> Tinggi muka air berada di -10 cm. Pori-pori tanah gambut jenuh air sehingga kebun dan hutan rawa tahan terhadap percikan api.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="dragdrop" class="card-section">
+      <div class="section-header">
+        <h2>2. Misi Penyelamatan Lahan Gambut (Drag &amp; Drop)</h2>
+        <p>Seret (<em>drag &amp; drop</em>) setiap kartu tindakan ke zona lapangan yang tepat—atau <strong>ketuk kartu lalu ketuk zona tujuan</strong> jika memakai layar sentuh.</p>
+      </div>
+
+      <div class="game-topbar">
+        <div class="score-pills">
+          <div class="pill">Skor: <span id="gameScore" style="color:var(--teal-light);">0</span></div>
+          <div class="pill">Terselesaikan: <span id="gameProgressText" style="color:#6ee7b7;">0 / 6</span></div>
+          <div class="progress-wrap">
+            <div class="progress-fill" id="gameProgressBar"></div>
+          </div>
+        </div>
+        <button class="btn-reset" onclick="resetGame()">Reset Misi</button>
+      </div>
+
+      <div id="gameFeedback" class="game-feedback">
+        Petunjuk: Tempatkan 3 aksi restorasi ke zona lahan yang sesuai, dan blokir 3 tindakan berbahaya ke Zona Larangan!
+      </div>
+
+      <!-- Kartu Tindakan -->
+      <div class="cards-deck" id="cardsDeck">
+        <div class="action-card" draggable="true" data-id="sekat" data-target="zona-kanal" onclick="selectCard(this)">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.2">
+              <rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 10h16M4 15h16"/>
+            </svg>
+          </div>
+          <h4>Bangun Sekat Kanal</h4>
+          <p>Menahan laju air di saluran drainase agar muka air gambut naik kembali.</p>
+        </div>
+
+        <div class="action-card" draggable="true" data-id="bakar" data-target="zona-larangan" onclick="selectCard(this)">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.2">
+              <path d="M12 2c2 4 6 6 6 11a6 6 0 0 1-12 0c0-3 2-5 3-7 0 2 2 3 3 3 0-3 0-5 0-7z"/>
+            </svg>
+          </div>
+          <h4>Bakar Semak Buka Lahan</h4>
+          <p>Membersihkan lahan dengan api di musim kemarau demi biaya murah.</p>
+        </div>
+
+        <div class="action-card" draggable="true" data-id="pltb" data-target="zona-rawan" onclick="selectCard(this)">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2">
+              <path d="M12 22V12M12 12C12 7 7 4 3 4c0 5 3 8 9 8zM12 12c0-5 5-8 9-8 0 5-3 8-9 8z"/>
+            </svg>
+          </div>
+          <h4>Metode PLTB (Tanpa Bakar)</h4>
+          <p>Pencacahan biomassa menjadi kompos organik tanpa memicu bara api.</p>
+        </div>
+
+        <div class="action-card" draggable="true" data-id="parit" data-target="zona-larangan" onclick="selectCard(this)">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.2">
+              <path d="M3 17h18M6 17l3-9h6l3 9"/>
+            </svg>
+          </div>
+          <h4>Gali Parit Pengering Baru</h4>
+          <p>Membuat saluran baru untuk menguras air gambut secara berlebihan.</p>
+        </div>
+
+        <div class="action-card" draggable="true" data-id="tanam" data-target="zona-bekas" onclick="selectCard(this)">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2">
+              <path d="M7 20h10M12 20V8M12 8c-3 0-5-2-5-5 3 0 5 2 5 5zM12 11c3 0 5-2 5-5-3 0-5 2-5 5z"/>
+            </svg>
+          </div>
+          <h4>Tanam Belangeran &amp; Purun</h4>
+          <p>Revegetasi dengan spesies asli rawa gambut yang adaptif genangan.</p>
+        </div>
+
+        <div class="action-card" draggable="true" data-id="puntung" data-target="zona-larangan" onclick="selectCard(this)">
+          <div class="card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.2">
+              <rect x="2" y="13" width="16" height="4" rx="1"/><path d="M18 13v4M21 9c0 2-1 2-1 4"/>
+            </svg>
+          </div>
+          <h4>Buang Puntung Rokok</h4>
+          <p>Membuang bara kecil sembarangan di atas serasah gambut kering.</p>
+        </div>
+      </div>
+
+      <div class="zones-grid">
+        <div class="drop-zone" id="zona-kanal" data-zone="zona-kanal" onclick="tapZone(this)">
+          <div>
+            <div class="zone-header">
+              <span class="zone-title">Kanal Drainase Kering</span>
+              <span class="zone-tag">Rewetting</span>
+            </div>
+            <p class="zone-desc">Air gambut terus mengalir keluar sehingga TMA turun di bawah -40 cm. Butuh penghambat aliran air.</p>
+          </div>
+          <div class="zone-dropped-list" id="list-zona-kanal"></div>
+        </div>
+
+        <div class="drop-zone" id="zona-rawan" data-zone="zona-rawan" onclick="tapZone(this)">
+          <div>
+            <div class="zone-header">
+              <span class="zone-title">Lahan Gambut Rawan Api</span>
+              <span class="zone-tag">Pencegahan</span>
+            </div>
+            <p class="zone-desc">Warga ingin menyiapkan lahan pertanian secara aman tanpa menyulut api di lapisan organik.</p>
+          </div>
+          <div class="zone-dropped-list" id="list-zona-rawan"></div>
+        </div>
+
+        <div class="drop-zone" id="zona-bekas" data-zone="zona-bekas" onclick="tapZone(this)">
+          <div>
+            <div class="zone-header">
+              <span class="zone-title">Lahan Bekas Terbakar</span>
+              <span class="zone-tag">Revegetation</span>
+            </div>
+            <p class="zone-desc">Tutupan vegetasi hilang pascakarhutla dan perlu dipulihkan dengan tanaman endemik rawa gambut.</p>
+          </div>
+          <div class="zone-dropped-list" id="list-zona-bekas"></div>
+        </div>
+
+        <div class="drop-zone zone-danger" id="zona-larangan" data-zone="zona-larangan" onclick="tapZone(this)">
+          <div>
+            <div class="zone-header">
+              <span class="zone-title">Zona Larangan (Blokir Aksi)</span>
+              <span class="zone-tag">3 Pemicu Karhutla</span>
+            </div>
+            <p class="zone-desc">Seret semua aktivitas manusia yang memicu kekeringan ekstrem dan kebakaran bawah tanah ke sini.</p>
+          </div>
+          <div class="zone-dropped-list" id="list-zona-larangan"></div>
+        </div>
+      </div>
+
+      <div class="victory-banner" id="victoryBanner">
+        Misi Tuntas! Kamu berhasil memulihkan hidrologi gambut, melindungi tutupan lahan, dan memblokir seluruh pemicu karhutla.
+      </div>
+    </section>
+
+    <section id="perbandingan" class="card-section">
+      <div class="section-header">
+        <h2>3. Perbandingan Kondisi: Gambut Sehat vs Gambut Terbakar</h2>
+        <p>Klik kategori di bawah untuk membandingkan dampak ekologis dan sosial-ekonomi secara langsung.</p>
+      </div>
+
+      <div class="tabs-bar">
+        <button class="tab-btn active" onclick="switchCompare('karbon', this)">Simpanan Karbon</button>
+        <button class="tab-btn" onclick="switchCompare('udara', this)">Kualitas Udara &amp; ISPA</button>
+        <button class="tab-btn" onclick="switchCompare('satwa', this)">Habitat Satwa Rawa</button>
+        <button class="tab-btn" onclick="switchCompare('ekonomi', this)">Sosial &amp; Ekonomi</button>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-box compare-healthy">
+          <h3>Ekosistem Gambut Sehat (Basah)</h3>
+          <div class="compare-metric" id="healthyMetric">Penyerap &amp; Penyimpan Karbon</div>
+          <p id="healthyDesc" class="compare-desc">
+            Kondisi tergenang air memperlambat pembusukan sisa tumbuhan selama ribuan tahun, mengunci jutaan ton karbon agar tidak lepas ke atmosfer.
+          </p>
+        </div>
+
+        <div class="compare-box compare-burned">
+          <h3>Ekosistem Gambut Terbakar (Kering)</h3>
+          <div class="compare-metric" id="burnedMetric">Emisi Gas Rumah Kaca Masif</div>
+          <p id="burnedDesc" class="compare-desc">
+            Satu kali kebakaran besar di lahan gambut melepaskan karbon yang tersimpan ratusan tahun dalam hitungan minggu, mempercepat pemanasan global.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="kuis" class="card-section">
+      <div class="section-header">
+        <h2>4. Mini Kuis Studi Kasus Restorasi Gambut (3R)</h2>
+        <p>Uji pemahamanmu mengenai strategi <strong>Rewetting</strong>, <strong>Revegetation</strong>, dan <strong>Revitalization</strong>.</p>
+      </div>
+
+      <div class="quiz-list" id="quizContainer"></div>
+    </section>
+  </main>
+
+  <footer>
+    Media Edukasi Interaktif Ekosistem Lahan Basah &bull; Pencegahan Kebakaran Hutan &amp; Lahan Gambut
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /Jaga_Gambut/
+
+    # Jalankan Laravel melalui folder public, bukan index.html lama.
+    RewriteCond %{REQUEST_URI} !^/Jaga_Gambut/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
